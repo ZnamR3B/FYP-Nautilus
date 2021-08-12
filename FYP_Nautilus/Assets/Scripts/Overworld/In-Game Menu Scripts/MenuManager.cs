@@ -37,7 +37,7 @@ public class MenuManager : MonoBehaviour
 
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI moneyText;
-    
+        
     private void Start()
     {
         playerCharacterManager = GetComponent<PlayerCharacterManager>();

@@ -16,6 +16,7 @@ public class MapMenuManager : MonoBehaviour
     //UI element
 
     bool inMenu;
+    
     public void openMenu()
     {
         inMenu = true;
@@ -31,6 +32,10 @@ public class MapMenuManager : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+
+    }
     public void openArea(int mapIndex)
     {
         areaMapHolder.GetChild(mapIndex).gameObject.SetActive(true);

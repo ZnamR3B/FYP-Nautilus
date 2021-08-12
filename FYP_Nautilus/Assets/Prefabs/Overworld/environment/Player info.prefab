@@ -7161,7 +7161,7 @@ MonoBehaviour:
   base_AP: 85
   base_AD: 60
   base_Spd: 95
-  weaponIndex: 7
+  weaponIndex: -1
   diverSkills: []
 --- !u!1 &5416000539982389964
 GameObject:
@@ -7283,7 +7283,7 @@ MonoBehaviour:
   base_AP: 60
   base_AD: 65
   base_Spd: 55
-  weaponIndex: 5
+  weaponIndex: -1
   diverSkills: []
 --- !u!1 &5416000540730253414
 GameObject:
@@ -7414,7 +7414,7 @@ MonoBehaviour:
   - {fileID: 5416000540716941846}
   - {fileID: 5416000540863798741}
   - {fileID: 5416000539238470910}
-  memberJoined: 0101010101010101
+  memberJoined: 0101010101000000
   teamMembers: 00000000010000000200000005000000
 --- !u!114 &5416000540734825894
 MonoBehaviour:
@@ -7606,7 +7606,7 @@ MonoBehaviour:
   base_AP: 80
   base_AD: 45
   base_Spd: 117
-  weaponIndex: 6
+  weaponIndex: -1
   diverSkills: []
 --- !u!1 &5416000540900793696
 GameObject:
