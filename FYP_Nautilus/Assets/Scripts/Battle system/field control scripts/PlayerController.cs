@@ -175,10 +175,14 @@ public class PlayerController : MonoBehaviour
         }
         //set depth text
         if(depthText != null)
+        {
             depthText.text = "Current Depth: " + Mathf.CeilToInt(Mathf.Abs(transform.position.y));
+        }
+        
 
         if(waterBox.bounds.Contains(gameObject.transform.position))
         {
+            depthText.transform.parent.gameObject.SetActive(true);
             underwater = true;
             anim.SetBool("Underwater", true);
             rb.drag = rbDrag_swim;
@@ -186,7 +190,8 @@ public class PlayerController : MonoBehaviour
             onGround = false;
         }
         else
-        {            
+        {
+            depthText.transform.parent.gameObject.SetActive(false);
             if (onGround)
             {
                 speed = walkSpeed;
