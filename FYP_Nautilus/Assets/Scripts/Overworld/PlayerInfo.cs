@@ -22,6 +22,9 @@ public struct AreaPoint
 [System.Serializable]
 public struct OceanDivePoint
 {
+    public int sceneIndex;
+    public int pointIndex;
+
     public string pointName;
     public bool unlocked;
     public int depth;

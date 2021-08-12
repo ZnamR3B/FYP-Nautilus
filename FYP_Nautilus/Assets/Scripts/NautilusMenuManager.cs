@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NautilusMenuManager : MonoBehaviour
 {
-    GameObject playerObject;
+    public GameObject playerObject;
     PlayerInteractionController playerInteractionController;
 
     public GameObject mainMenu;
@@ -22,7 +22,7 @@ public class NautilusMenuManager : MonoBehaviour
 
     private void Update()
     {
-        if(inMenu)
+        if (inMenu && !inSubMenu)
         {
             if (Input.GetButtonDown("Cancel"))
             {

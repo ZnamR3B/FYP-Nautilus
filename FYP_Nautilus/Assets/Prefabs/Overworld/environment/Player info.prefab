@@ -7484,13 +7484,17 @@ MonoBehaviour:
       sceneIndex: 1
       placeIndex: 1
   RondaOceanDivePoints:
-  - pointName: Central Plane
+  - sceneIndex: 2
+    pointIndex: 0
+    pointName: Central Plane
     unlocked: 1
     depth: 0
     coordinate: {x: 750, y: 750}
-  - pointName: North Plane
+  - sceneIndex: 2
+    pointIndex: 1
+    pointName: North Plane
     unlocked: 1
-    depth: 0
+    depth: 400
     coordinate: {x: 750, y: 50}
   playerCharacterManager: {fileID: 5416000540734825892}
   itemManager: {fileID: 5416000540734825894}

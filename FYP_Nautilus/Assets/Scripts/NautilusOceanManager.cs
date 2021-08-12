@@ -6,6 +6,7 @@ using TMPro;
 
 public class NautilusOceanManager : MonoBehaviour
 {
+    public NautilusMenuManager nautilusMenuManager;
     public PlayerInfo playerInfo;
 
     public GameObject[] maps;
@@ -20,26 +21,34 @@ public class NautilusOceanManager : MonoBehaviour
     public TextMeshProUGUI pointDepth;
     public TextMeshProUGUI pointCoordinate;
 
+    public GameObject confirmPanel;
+    public int confirm; //0 is not input yet, 1 is confirm and -1 is denied
+
     bool inMenu;
+
+    int sceneIndex;
+    int pointIndex;
 
     public void openMenu(int index, PlayerInfo info)
     {
+        //init menu
         inMenu = true;
         playerInfo = info;
         mapIndex = index;
         gameObject.SetActive(true);
         currentIndex = 0;
+        //set map active
         maps[mapIndex].gameObject.SetActive(true);
         if(mapIndex == 0)
         {
             //ronda ocean
             maxIndex = playerInfo.RondaOceanDivePoints.Length - 1;
         }
+        //set available points active
         for(int i = 0; i < maxIndex; i++)
         {
             if(playerInfo.RondaOceanDivePoints[i].unlocked)
             {
-                Debug.Log(maps[mapIndex].transform.GetChild(0).GetChild(i).gameObject);
                 maps[mapIndex].transform.GetChild(0).GetChild(i).gameObject.SetActive(true);
             }
         }
@@ -47,10 +56,10 @@ public class NautilusOceanManager : MonoBehaviour
     }
 
     private void Update()
-    {
-        Debug.Log(currentIndex);
+    {     
         if(inMenu)
         {
+            //input choosing points
             if (Input.GetKeyDown(KeyCode.W))
             {
                 int originalIndex = currentIndex;
@@ -79,6 +88,9 @@ public class NautilusOceanManager : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.S))
             {
                 int originalIndex = currentIndex;
+                GameObject pointObj = maps[mapIndex].transform.GetChild(0).GetChild(currentIndex).gameObject;
+                pointObj.GetComponent<Image>().color = Color.white;
+                pointObj.transform.localScale = new Vector3(1, 1, 1);
                 currentIndex++;
                 if (currentIndex > maxIndex)
                 {
@@ -98,6 +110,20 @@ public class NautilusOceanManager : MonoBehaviour
                 }
                 showPointInfo();
             }
+            //input confirm
+            if(Input.GetButtonDown("Submit"))
+            {
+                switch(mapIndex)
+                {
+                    case 1:
+                        OceanDivePoint point = playerInfo.RondaOceanDivePoints[currentIndex];
+                        sceneIndex = point.sceneIndex;
+                        pointIndex = point.pointIndex;
+                        StartCoroutine(confirmTravel());
+                        break;
+                    //more maps...
+                }
+            }
         }
     }
 
@@ -105,13 +131,35 @@ public class NautilusOceanManager : MonoBehaviour
     {
         GameObject pointObj = maps[mapIndex].transform.GetChild(0).GetChild(currentIndex).gameObject;
         pointObj.GetComponent<Image>().color = Color.red;
-        pointObj.transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
+        pointObj.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
         if (mapIndex == 0)
         {
             //if the map is Ronda
             pointName.text = playerInfo.RondaOceanDivePoints[currentIndex].pointName;
             pointDepth.text = playerInfo.RondaOceanDivePoints[currentIndex].depth.ToString();
             pointCoordinate.text = playerInfo.RondaOceanDivePoints[currentIndex].coordinate.x + " , " + playerInfo.RondaOceanDivePoints[currentIndex].coordinate.y;
+        }
+    }
+
+    public IEnumerator confirmTravel()
+    {
+        confirmPanel.SetActive(true);
+        while(confirm == 0)
+        {
+            yield return null;
+        }
+        confirmPanel.SetActive(false);
+        if(confirm == 1)
+        {
+            //confirm travel
+            TransferManager transferManager = FindObjectOfType<TransferManager>();
+            transferManager.toScene = sceneIndex;
+            transferManager.toIndex = pointIndex;
+            StartCoroutine(FindObjectOfType<TransferManager>().transfer(nautilusMenuManager.playerObject));
+        }
+        else
+        {
+            confirm = 0;
         }
     }
 }
