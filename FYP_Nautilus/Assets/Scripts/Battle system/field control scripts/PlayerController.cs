@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour
                 moveDirection += new Vector3(0, up, 0) + new Vector3(0, -down, 0);
                 moveDirection.Normalize();
                 moveDirection = moveDirection * (Time.deltaTime * speed);
-                transform.Translate(moveDirection, Space.World);
+                transform.position += moveDirection;
             }
             else
             {

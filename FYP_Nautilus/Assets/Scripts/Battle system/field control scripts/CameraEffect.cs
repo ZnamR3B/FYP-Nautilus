@@ -40,6 +40,7 @@ public class CameraEffect : MonoBehaviour
 
     private void Start()
     {
+        //waterBox = GameObject.FindGameObjectWithTag("Water").GetComponent<BoxCollider>();
         postProcess.profile.TryGet(out pp_depth);
         postProcess.profile.TryGet(out pp_color);
         postProcess.profile.TryGet(out pp_vignette);
