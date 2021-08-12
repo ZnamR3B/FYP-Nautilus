@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     float swimSpeed = 10;
 
     float rbDrag_swim = 20;
-    float rbDrag_walk = 0;
+    public float rbDrag_walk = 0.1f;
     public float jumpForce;
 
     public CameraController cameraController;
@@ -46,14 +46,14 @@ public class PlayerController : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody>();
         floorMask = LayerMask.GetMask("Floor");
-        rb.drag = 0.1f;
+        rb.drag = rbDrag_walk;
         inBattle = false;
     }
 
     private void Update()
     {
-        h = Input.GetAxis("Horizontal");
-        v = Input.GetAxis("Vertical");
+        h = Input.GetAxisRaw("Horizontal");
+        v = Input.GetAxisRaw("Vertical");
         up = Input.GetAxis("Jump");
         down = Input.GetAxis("Sink");
     }
@@ -140,15 +140,15 @@ public class PlayerController : MonoBehaviour
                 forward.Normalize();
                 right.Normalize();
                 Vector3 moveDirection = forward * v + right * h;
-                moveDirection.y = 0;
-                moveDirection.Normalize();
+                //moveDirection.y = 0;
+                moveDirection = moveDirection.normalized;
                 Vector3 movement = moveDirection * (Time.deltaTime * speed);
-
                 if (h != 0 || v != 0)
                 {
                     transform.rotation = Quaternion.LookRotation(moveDirection);
+                    transform.Translate(movement, Space.World);
                 }
-                transform.Translate(movement, Space.World);
+                
                 if (onGround && Input.GetButtonDown("Jump"))
                 {                    
                     jumpTimer = 0;
