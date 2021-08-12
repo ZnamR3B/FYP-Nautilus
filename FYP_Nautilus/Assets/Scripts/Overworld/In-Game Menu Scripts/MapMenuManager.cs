@@ -61,6 +61,6 @@ public class MapMenuManager : MonoBehaviour
         gameObject.SetActive(false);
         menuManager.openMenu();
     }
-
+    
     
 }
