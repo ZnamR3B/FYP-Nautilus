@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ronda_Toukan_MainStreet.unity
     guid: fe9a9cda938bbfd42bd0fea75d5ed150
+  - enabled: 1
+    path: Assets/Scenes/RondaOcean.unity
+    guid: 20ab602f1f8f1924fb2729e7d88a8ddb
   m_configObjects: {}

@@ -164,13 +164,13 @@ public class NautilusOceanManager : MonoBehaviour
         if(confirm == 1)
         {
             //confirm travel
-            //close menu
-            closeMenu();
-            nautilusMenuManager.closeMenu();
+            //close menu            
             TransferManager transferManager = FindObjectOfType<TransferManager>();
             transferManager.toScene = sceneIndex;
             transferManager.toIndex = pointIndex;
             StartCoroutine(FindObjectOfType<TransferManager>().transfer(nautilusMenuManager.playerObject));
+            closeMenu();
+            nautilusMenuManager.closeMenu();
         }
         else
         {

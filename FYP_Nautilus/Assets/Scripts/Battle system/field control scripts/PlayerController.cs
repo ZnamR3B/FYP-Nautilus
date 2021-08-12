@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
                 //move base on this direction
                 Vector3 moveDirection = forward * v + right * h;
                 //get movement direction
-                Vector3 movement = moveDirection * (Time.deltaTime * speed);
+                //Vector3 movement = moveDirection * (Time.deltaTime * speed);
                 //set rotation
                 if (h != 0 || v != 0)
                 {
@@ -117,17 +117,19 @@ public class PlayerController : MonoBehaviour
                     transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
                 }
                 //move player object
-                transform.Translate(movement, Space.World);
+                //transform.Translate(movement, Space.World);
 
-                //move player vertically (world position)
-                Vector3 upwardMovement = new Vector3(0, up, 0) ;
-                Vector3 downwardMovement = new Vector3(0, -down, 0);
-                Vector3 ttlVerticalMove = (upwardMovement + downwardMovement) * (Time.deltaTime * speed / 2);
-                transform.Translate(ttlVerticalMove, Space.World);
-
+                ////move player vertically (world position)
+                //Vector3 upwardMovement = new Vector3(0, up, 0) ;
+                //Vector3 downwardMovement = new Vector3(0, -down, 0);
+                //Vector3 ttlVerticalMove = (upwardMovement + downwardMovement) * (Time.deltaTime * speed / 2);
+                //transform.Translate(ttlVerticalMove, Space.World);     
                 
-                
-                
+                //new
+                moveDirection += new Vector3(0, up, 0) + new Vector3(0, -down, 0);
+                moveDirection.Normalize();
+                moveDirection = moveDirection * (Time.deltaTime * speed);
+                transform.Translate(moveDirection, Space.World);
             }
             else
             {
@@ -139,6 +141,7 @@ public class PlayerController : MonoBehaviour
                 right.Normalize();
                 Vector3 moveDirection = forward * v + right * h;
                 moveDirection.y = 0;
+                moveDirection.Normalize();
                 Vector3 movement = moveDirection * (Time.deltaTime * speed);
 
                 if (h != 0 || v != 0)
