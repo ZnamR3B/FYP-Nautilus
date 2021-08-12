@@ -39,6 +39,7 @@ public class NautilusOceanManager : MonoBehaviour
         {
             if(playerInfo.RondaOceanDivePoints[i].unlocked)
             {
+                Debug.Log(maps[mapIndex].transform.GetChild(0).GetChild(i).gameObject);
                 maps[mapIndex].transform.GetChild(0).GetChild(i).gameObject.SetActive(true);
             }
         }
