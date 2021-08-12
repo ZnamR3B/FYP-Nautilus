@@ -20,9 +20,11 @@ public class NautilusOceanManager : MonoBehaviour
     public TextMeshProUGUI pointDepth;
     public TextMeshProUGUI pointCoordinate;
 
+    bool inMenu;
 
     public void openMenu(int index, PlayerInfo info)
     {
+        inMenu = true;
         playerInfo = info;
         mapIndex = index;
         gameObject.SetActive(true);
@@ -44,21 +46,35 @@ public class NautilusOceanManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.W))
+        Debug.Log(currentIndex);
+        if(inMenu)
         {
-            maps[mapIndex].transform.GetChild(0).GetChild(currentIndex).GetComponent<Image>().color = Color.white;
-            currentIndex--;
-        }
-        else if(Input.GetKeyDown(KeyCode.S))
-        {
-            currentIndex++;
-            maps[mapIndex].transform.GetChild(0).GetChild(currentIndex).GetComponent<Image>().color = Color.red;
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                maps[mapIndex].transform.GetChild(0).GetChild(currentIndex).GetComponent<Image>().color = Color.white;
+                currentIndex--;
+                if (currentIndex < 0)
+                {
+                    currentIndex = maxIndex;
+                }
+                showPointInfo();
+            }
+            else if (Input.GetKeyDown(KeyCode.S))
+            {
+                currentIndex++;
+                if (currentIndex > maxIndex)
+                {
+                    currentIndex = 0;
+                }
+                showPointInfo();
+            }
         }
     }
 
     public void showPointInfo()
     {
-        if(mapIndex == 0)
+        maps[mapIndex].transform.GetChild(0).GetChild(currentIndex).GetComponent<Image>().color = Color.red;
+        if (mapIndex == 0)
         {
             pointName.text = playerInfo.RondaOceanDivePoints[currentIndex].pointName;
             pointDepth.text = playerInfo.RondaOceanDivePoints[currentIndex].depth.ToString();

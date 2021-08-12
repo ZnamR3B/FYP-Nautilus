@@ -7488,10 +7488,10 @@ MonoBehaviour:
     unlocked: 1
     depth: 0
     coordinate: {x: 750, y: 750}
-  - pointName: Central Plane
-    unlocked: 1
+  - pointName: North Plane
+    unlocked: 0
     depth: 0
-    coordinate: {x: 750, y: 750}
+    coordinate: {x: 750, y: 50}
   playerCharacterManager: {fileID: 5416000540734825892}
   itemManager: {fileID: 5416000540734825894}
   weaponManager: {fileID: 4075994134371892739}
