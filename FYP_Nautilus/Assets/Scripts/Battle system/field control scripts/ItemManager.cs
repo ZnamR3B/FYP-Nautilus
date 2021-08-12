@@ -6,5 +6,4 @@ public class ItemManager : MonoBehaviour
 {
     public Item[] items;
     public int[] itemCount;
-
 }
