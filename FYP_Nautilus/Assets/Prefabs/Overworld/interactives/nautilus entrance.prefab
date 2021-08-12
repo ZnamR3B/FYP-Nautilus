@@ -2204,14 +2204,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8408f81d8fd483c468f304ade8ecc0c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nautilusMenuManager: {fileID: 0}
+  nautilusMenuManager: {fileID: 1855619714689656197}
   playerInfo: {fileID: 0}
   maps:
   - {fileID: 1855619716025251707}
   pointName: {fileID: 1855619715854287851}
   pointDepth: {fileID: 1855619716185007351}
   pointCoordinate: {fileID: 1855619714779939457}
-  confirmPanel: {fileID: 0}
+  confirmPanel: {fileID: 5276360261485523705}
   confirm: 0
 --- !u!1 &1855619715717000510
 GameObject:
@@ -4336,7 +4336,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2790848408371497252}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1855619715690212766}
+        m_MethodName: buttonConfirm
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &7397816903887090147
 GameObject:
   m_ObjectHideFlags: 0
@@ -4455,7 +4466,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3803694947791117320}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1855619715690212766}
+        m_MethodName: buttonConfirm
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7926520359771459055
 GameObject:
   m_ObjectHideFlags: 0

@@ -55,6 +55,18 @@ public class NautilusOceanManager : MonoBehaviour
         showPointInfo();
     }
 
+    public void closeMenu()
+    {
+        //close menu 
+        inMenu = false;
+        gameObject.SetActive(false);
+        foreach(GameObject map in maps)
+        {
+            map.SetActive(false);
+        }
+        nautilusMenuManager.openMainMenu();
+    }
+
     private void Update()
     {     
         if(inMenu)
@@ -115,7 +127,7 @@ public class NautilusOceanManager : MonoBehaviour
             {
                 switch(mapIndex)
                 {
-                    case 1:
+                    case 0:
                         OceanDivePoint point = playerInfo.RondaOceanDivePoints[currentIndex];
                         sceneIndex = point.sceneIndex;
                         pointIndex = point.pointIndex;
@@ -152,6 +164,9 @@ public class NautilusOceanManager : MonoBehaviour
         if(confirm == 1)
         {
             //confirm travel
+            //close menu
+            closeMenu();
+            nautilusMenuManager.closeMenu();
             TransferManager transferManager = FindObjectOfType<TransferManager>();
             transferManager.toScene = sceneIndex;
             transferManager.toIndex = pointIndex;
@@ -161,5 +176,10 @@ public class NautilusOceanManager : MonoBehaviour
         {
             confirm = 0;
         }
+    }
+
+    public void buttonConfirm(bool confirmation)
+    {
+        confirm = confirmation ? 1 : -1; 
     }
 }
