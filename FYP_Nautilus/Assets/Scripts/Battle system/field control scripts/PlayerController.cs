@@ -39,10 +39,14 @@ public class PlayerController : MonoBehaviour
 
     LayerMask floorMask;
 
+    BoxCollider waterBox;
+
     //interaction in field
     public bool canMove;
+
     private void Start()
     {
+        waterBox = GameObject.FindGameObjectWithTag("Water").GetComponent<BoxCollider>();
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody>();
         floorMask = LayerMask.GetMask("Floor");
@@ -103,13 +107,11 @@ public class PlayerController : MonoBehaviour
                 //move base on this direction
                 Vector3 moveDirection = forward * v + right * h;
                 //get movement direction
-                //Vector3 movement = moveDirection * (Time.deltaTime * speed);
                 //set rotation
                 if (h != 0 || v != 0)
                 {
                     //if moving
                     transform.rotation = Quaternion.LookRotation(moveDirection);
-
                 }
                 else
                 {
@@ -117,19 +119,24 @@ public class PlayerController : MonoBehaviour
                     transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
                 }
                 //move player object
-                //transform.Translate(movement, Space.World);
-
-                ////move player vertically (world position)
-                //Vector3 upwardMovement = new Vector3(0, up, 0) ;
-                //Vector3 downwardMovement = new Vector3(0, -down, 0);
-                //Vector3 ttlVerticalMove = (upwardMovement + downwardMovement) * (Time.deltaTime * speed / 2);
-                //transform.Translate(ttlVerticalMove, Space.World);     
-                
-                //new
-                moveDirection += new Vector3(0, up, 0) + new Vector3(0, -down, 0);
+                moveDirection += new Vector3(0, -down, 0) + new Vector3(0, up, 0);
                 moveDirection.Normalize();
                 moveDirection = moveDirection * (Time.deltaTime * speed);
                 transform.position += moveDirection;
+                //if(up > 0)
+                //{
+                //    rb.constraints = RigidbodyConstraints.FreezePositionY;
+                //    rb.constraints = RigidbodyConstraints.FreezeRotationX;
+                //    rb.constraints = RigidbodyConstraints.FreezeRotationY;
+                //    rb.constraints = RigidbodyConstraints.FreezeRotationZ;
+                //}
+                //else
+                //{
+                //    rb.constraints = RigidbodyConstraints.None;
+                //    rb.constraints = RigidbodyConstraints.FreezeRotationX;
+                //    rb.constraints = RigidbodyConstraints.FreezeRotationY;
+                //    rb.constraints = RigidbodyConstraints.FreezeRotationZ;
+                //}
             }
             else
             {
@@ -140,7 +147,6 @@ public class PlayerController : MonoBehaviour
                 forward.Normalize();
                 right.Normalize();
                 Vector3 moveDirection = forward * v + right * h;
-                //moveDirection.y = 0;
                 moveDirection = moveDirection.normalized;
                 Vector3 movement = moveDirection * (Time.deltaTime * speed);
                 if (h != 0 || v != 0)
@@ -170,24 +176,18 @@ public class PlayerController : MonoBehaviour
         //set depth text
         if(depthText != null)
             depthText.text = "Current Depth: " + Mathf.CeilToInt(Mathf.Abs(transform.position.y));
-    }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Water"))
+        if(waterBox.bounds.Contains(gameObject.transform.position))
         {
-            headLight.SetActive(true);
             underwater = true;
             anim.SetBool("Underwater", true);
             rb.drag = rbDrag_swim;
             speed = swimSpeed;
             onGround = false;
         }
-        else if (other.CompareTag("Floor"))
-        {
-            headLight.SetActive(false);
-            rb.drag = rbDrag_walk;
-            if(onGround)
+        else
+        {            
+            if (onGround)
             {
                 speed = walkSpeed;
             }
@@ -195,20 +195,53 @@ public class PlayerController : MonoBehaviour
             {
                 speed = walkSpeed / 1.5f;
             }
-            anim.SetBool("Underwater", false);
-            underwater = false;
         }
+
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.CompareTag("Floor"))
+        {
+            underwater = false;
+            anim.SetBool("Underwater", false);
+            rb.drag = rbDrag_walk;
+        }
+        //if (other.CompareTag("Water"))
+        //{
+        //    headLight.SetActive(true);
+        //    underwater = true;
+        //    anim.SetBool("Underwater", true);
+        //    rb.drag = rbDrag_swim;
+        //    speed = swimSpeed;
+        //    onGround = false;
+        //}
+        //else if (other.CompareTag("Floor"))
+        //{
+        //    headLight.SetActive(false);
+        //    rb.drag = rbDrag_walk;
+        //    if(onGround)
+        //    {
+        //        speed = walkSpeed;
+        //    }
+        //    else
+        //    {
+        //        speed = walkSpeed / 1.5f;
+        //    }
+        //    anim.SetBool("Underwater", false);
+        //    underwater = false;
+        //}
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Water"))
-        {
-            //underwater = false;            
-            rb.drag = rbDrag_walk;
-            speed = walkSpeed;
-            rb.velocity += new Vector3(0, rb.velocity.y, 0);
-        }
+        //if (other.CompareTag("Water"))
+        //{
+        //    //underwater = false;            
+        //    rb.drag = rbDrag_walk;
+        //    speed = walkSpeed;
+        //    rb.velocity += new Vector3(0, rb.velocity.y, 0);
+        //}
     }
 
     

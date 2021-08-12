@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.005
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.8820755, g: 0.9204009, b: 1, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 01f4eb1c73693428d923f1520032e7f9, type: 2}
   m_HaloStrength: 0.5
@@ -290,6 +290,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7083935}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &9628138 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8992105003831386228, guid: 8b59a6467c2663740b1c98bcc4e3009d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1444754851}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &9628139
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9628138}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.000001, y: 5, z: 10.000001}
+  m_Center: {x: -0.00000011920929, y: -2.5, z: 0}
 --- !u!1 &14227828
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,7 +852,7 @@ GameObject:
   - component: {fileID: 69356271}
   - component: {fileID: 69356273}
   - component: {fileID: 69356272}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: platform (2)
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -1712,7 +1731,7 @@ GameObject:
   - component: {fileID: 150634887}
   - component: {fileID: 150634889}
   - component: {fileID: 150634888}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: platform (8)
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -3180,7 +3199,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 295016957}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1984, y: 0, z: 2839}
+  m_LocalPosition: {x: 1984, y: -142.99, z: 3250}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 602017291}
@@ -3731,7 +3750,7 @@ GameObject:
   - component: {fileID: 380075057}
   - component: {fileID: 380075059}
   - component: {fileID: 380075058}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: platform (3)
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -4374,9 +4393,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 435513409}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: floating farm Glass Garden
-  m_TagString: Floor
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6101,7 +6120,7 @@ GameObject:
   - component: {fileID: 602601543}
   - component: {fileID: 602601545}
   - component: {fileID: 602601544}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: platform (6)
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -9648,7 +9667,7 @@ GameObject:
   - component: {fileID: 989720701}
   - component: {fileID: 989720700}
   - component: {fileID: 989720699}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Floating farm
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -9837,7 +9856,7 @@ GameObject:
   - component: {fileID: 1000092798}
   - component: {fileID: 1000092797}
   - component: {fileID: 1000092800}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: platform
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -12191,7 +12210,7 @@ GameObject:
   - component: {fileID: 1251750865}
   - component: {fileID: 1251750867}
   - component: {fileID: 1251750866}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: platform (5)
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -12844,7 +12863,7 @@ GameObject:
   - component: {fileID: 1360748238}
   - component: {fileID: 1360748240}
   - component: {fileID: 1360748239}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: platform (1)
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -16068,7 +16087,7 @@ GameObject:
   - component: {fileID: 1671608045}
   - component: {fileID: 1671608048}
   - component: {fileID: 1671608047}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: center pillar
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -18574,7 +18593,7 @@ GameObject:
   - component: {fileID: 1857397052}
   - component: {fileID: 1857397054}
   - component: {fileID: 1857397053}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: platform (4)
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -18685,7 +18704,7 @@ GameObject:
   - component: {fileID: 1888190239}
   - component: {fileID: 1888190241}
   - component: {fileID: 1888190240}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: platform (7)
   m_TagString: Floor
   m_Icon: {fileID: 0}
