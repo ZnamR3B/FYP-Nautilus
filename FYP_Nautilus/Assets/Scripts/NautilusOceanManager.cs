@@ -42,6 +42,7 @@ public class NautilusOceanManager : MonoBehaviour
                 maps[mapIndex].transform.GetChild(0).GetChild(i).gameObject.SetActive(true);
             }
         }
+        showPointInfo();
     }
 
     private void Update()
@@ -51,20 +52,48 @@ public class NautilusOceanManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.W))
             {
-                maps[mapIndex].transform.GetChild(0).GetChild(currentIndex).GetComponent<Image>().color = Color.white;
+                int originalIndex = currentIndex;
+                GameObject pointObj = maps[mapIndex].transform.GetChild(0).GetChild(currentIndex).gameObject;
+                pointObj.GetComponent<Image>().color = Color.white;
+                pointObj.transform.localScale = new Vector3(1, 1, 1);
                 currentIndex--;
                 if (currentIndex < 0)
                 {
                     currentIndex = maxIndex;
                 }
+                while (!playerInfo.RondaOceanDivePoints[currentIndex].unlocked)
+                {
+                    currentIndex--;
+                    if (currentIndex < 0)
+                    {
+                        currentIndex = maxIndex;
+                    }
+                    if (currentIndex == originalIndex)
+                    {
+                        break;
+                    }
+                }
                 showPointInfo();
             }
             else if (Input.GetKeyDown(KeyCode.S))
             {
+                int originalIndex = currentIndex;
                 currentIndex++;
                 if (currentIndex > maxIndex)
                 {
                     currentIndex = 0;
+                }
+                while (!playerInfo.RondaOceanDivePoints[currentIndex].unlocked)
+                {
+                    currentIndex--;
+                    if (currentIndex > maxIndex)
+                    {
+                        currentIndex = 0;
+                    }
+                    if(currentIndex == originalIndex)
+                    {
+                        break;
+                    }
                 }
                 showPointInfo();
             }
@@ -73,9 +102,12 @@ public class NautilusOceanManager : MonoBehaviour
 
     public void showPointInfo()
     {
-        maps[mapIndex].transform.GetChild(0).GetChild(currentIndex).GetComponent<Image>().color = Color.red;
+        GameObject pointObj = maps[mapIndex].transform.GetChild(0).GetChild(currentIndex).gameObject;
+        pointObj.GetComponent<Image>().color = Color.red;
+        pointObj.transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
         if (mapIndex == 0)
         {
+            //if the map is Ronda
             pointName.text = playerInfo.RondaOceanDivePoints[currentIndex].pointName;
             pointDepth.text = playerInfo.RondaOceanDivePoints[currentIndex].depth.ToString();
             pointCoordinate.text = playerInfo.RondaOceanDivePoints[currentIndex].coordinate.x + " , " + playerInfo.RondaOceanDivePoints[currentIndex].coordinate.y;
